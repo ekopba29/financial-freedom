@@ -8,102 +8,145 @@
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .num { font-family: 'JetBrains Mono', monospace; letter-spacing: -0.5px; }
+  </style>
 </head>
 
-<body class="bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen p-6 text-gray-800">
+<body class="bg-gray-100 min-h-screen p-6 text-gray-800">
 
-<div class="max-w-6xl mx-auto">
-  <h1 class="text-4xl font-bold text-center mb-2">FIRE Calculator</h1>
-  <p class="text-center text-gray-500 mb-8">Simple simulator untuk Financial Independence</p>
+<div class="max-w-5xl mx-auto">
 
-  <div class="grid md:grid-cols-3 gap-6">
+  <!-- HEADER -->
+  <div class="text-center mb-8">
+    <h1 class="text-3xl font-bold">FIRE Calculator</h1>
+    <p class="text-gray-500 text-sm mt-1">Simple simulator untuk Financial Independence</p>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-5">
 
     <!-- LEFT -->
-    <div class="md:col-span-2 space-y-6">
+    <div class="md:col-span-2 space-y-5">
 
-      <div class="bg-white p-5 rounded-2xl shadow-sm border">
-        <p class="font-semibold text-lg mb-1">Apa ini?</p>
+      <!-- INFO -->
+      <div class="bg-white p-5 rounded-xl border border-gray-200">
+        <p class="font-semibold mb-1">Apa ini?</p>
         <p class="text-sm text-gray-600 leading-relaxed">
-          Simulasi FIRE: asumsi return <b>7%</b>, ambil <b>4%</b> untuk hidup,
-          dan <b>3%</b> untuk menjaga nilai aset dari inflasi.
+          Simulasi FIRE sederhana: asumsi return <b>7%</b> per tahun, <b>4%</b> dipakai untuk hidup, dan <b>3%</b> untuk menjaga nilai aset agar tidak tergerus inflasi.
         </p>
       </div>
 
-      <div class="bg-white p-5 rounded-2xl shadow-sm border">
-        <label class="block text-sm font-medium text-gray-600">Pengeluaran Bulanan</label>
+      <!-- INPUT -->
+      <div class="bg-white p-5 rounded-xl border border-gray-200">
+        <label class="text-sm text-gray-600">Pengeluaran Bulanan</label>
         <input id="monthly" type="number" value="6000000"
-          class="w-full mt-3 p-3 border rounded-xl text-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+          class="w-full mt-2 p-3 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-300" />
       </div>
 
-      <div class="grid sm:grid-cols-2 gap-4">
-        <div class="bg-white p-5 rounded-2xl shadow-sm border">
-          <p class="text-sm text-gray-500">Step 1</p>
-          <p class="text-lg font-semibold">Pengeluaran Tahunan</p>
-          <p class="text-2xl font-bold mt-2">Rp<span id="yearly"></span></p>
-        </div>
-
-        <div class="bg-white p-5 rounded-2xl shadow-sm border">
-          <p class="text-sm text-gray-500">Step 2</p>
-          <p class="text-lg font-semibold">Target FIRE</p>
-          <p class="text-2xl font-bold mt-2 text-green-600">Rp<span id="target"></span></p>
+      <!-- STEP 1 -->
+      <div class="bg-white p-5 rounded-xl border border-gray-200">
+        <div class="flex justify-between items-start">
+          <div>
+            <p class="text-sm text-gray-700">Pengeluaran Tahunan</p>
+            <p class="text-xs text-gray-400">(Pengeluaran Bulanan × 12)</p>
+          </div>
+          <p class="text-lg font-semibold num">Rp<span id="yearly"></span></p>
         </div>
       </div>
 
-      <div class="bg-white p-5 rounded-2xl shadow-sm border space-y-3">
-        <p class="font-semibold text-lg">Step 3: Simulasi saat FIRE</p>
-
-        <div class="grid sm:grid-cols-2 gap-4 text-sm">
+      <!-- STEP 2 -->
+      <div class="bg-white p-5 rounded-xl border border-gray-200">
+        <div class="flex justify-between items-start">
           <div>
-            <p class="text-gray-500">Total Aset</p>
-            <p class="font-semibold text-lg">Rp<span id="target2"></span></p>
+            <p class="text-sm text-gray-700">Target FIRE</p>
+            <p class="text-xs text-gray-400">(Pengeluaran Tahunan × 25)</p>
           </div>
-
-          <div>
-            <p class="text-gray-500">Return 7%</p>
-            <p class="font-semibold text-lg text-blue-600">Rp<span id="return"></span></p>
-          </div>
-
-          <div>
-            <p class="text-gray-500">Dipakai (4%)</p>
-            <p class="font-semibold text-lg text-red-500">Rp<span id="withdrawYear"></span>/tahun</p>
-            <p class="text-xs text-gray-400">≈ Rp<span id="withdrawMonth"></span>/bulan</p>
-          </div>
-
-          <div>
-            <p class="text-gray-500">Reinvest (3%)</p>
-            <p class="font-semibold text-lg text-green-500">Rp<span id="growth"></span></p>
-          </div>
+          <p class="text-lg font-semibold num">Rp<span id="target"></span></p>
         </div>
       </div>
 
-      <div class="bg-white p-5 rounded-2xl shadow-sm border">
-        <p class="text-sm text-gray-500">Proyeksi</p>
-        <p class="text-lg font-semibold">Aset Tahun Depan</p>
-        <p class="text-2xl font-bold text-purple-600 mt-2">Rp<span id="next"></span></p>
+      <!-- STEP 3 -->
+      <div class="bg-white p-5 rounded-xl border border-gray-200">
+        <p class="font-semibold mb-4">Step 3: Simulasi saat sudah mencapai FIRE</p>
+
+        <div class="space-y-4">
+
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-sm text-gray-700">Total Aset</p>
+              <p class="text-xs text-gray-400">(Total dana yang sudah terkumpul)</p>
+            </div>
+            <p class="font-semibold num text-lg">Rp<span id="target2"></span></p>
+          </div>
+
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-sm text-gray-700">Return per tahun</p>
+              <p class="text-xs text-gray-400">(Asumsi 7% dari total aset)</p>
+            </div>
+            <p class="font-semibold num text-lg">Rp<span id="return"></span></p>
+          </div>
+
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-sm text-gray-700">Yang digunakan untuk hidup</p>
+              <p class="text-xs text-gray-400">(4% per tahun untuk biaya hidup)</p>
+              <p class="text-xs text-gray-400 mt-1">
+                ≈ Rp<span id="withdrawMonth" class="num"></span>/bulan
+              </p>
+            </div>
+            <p class="font-semibold num text-lg">Rp<span id="withdrawYear"></span></p>
+          </div>
+
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-sm text-gray-700">Yang diinvestasikan kembali</p>
+              <p class="text-xs text-gray-400">(Sisa 3% untuk menjaga nilai aset)</p>
+            </div>
+            <p class="font-semibold num text-lg">Rp<span id="growth"></span></p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- NEXT -->
+      <div class="bg-white p-5 rounded-xl border border-gray-200">
+        <div class="flex justify-between items-start">
+          <div>
+            <p class="text-sm text-gray-700">Proyeksi Aset Tahun Depan</p>
+            <p class="text-xs text-gray-400">(Setelah reinvest 3%)</p>
+          </div>
+          <p class="text-lg font-semibold num">Rp<span id="next"></span></p>
+        </div>
       </div>
 
     </div>
 
     <!-- RIGHT -->
     <div>
-      <div class="bg-white p-5 rounded-2xl shadow-sm border space-y-6 sticky top-6">
-        <p class="font-semibold text-lg">Action Plan</p>
+      <div class="bg-white p-5 rounded-xl border border-gray-200 space-y-5 sticky top-6">
+        <p class="font-semibold">Action Plan</p>
 
         <div>
-          <p class="font-semibold text-sm text-gray-500 mb-2">Before FIRE</p>
-          <ul class="space-y-2 text-sm">
-            <li>• Naikkan income (skill / side income)</li>
-            <li>• Tekan gaya hidup (hemat tapi realistis)</li>
-            <li>• Investasi rutin & konsisten</li>
+          <p class="text-xs text-gray-400 mb-2">Before FIRE</p>
+          <ul class="space-y-1 text-sm">
+            <li>• Naikkan income</li>
+            <li>• Tekan pengeluaran</li>
+            <li>• Investasi rutin</li>
           </ul>
         </div>
 
         <div>
-          <p class="font-semibold text-sm text-gray-500 mb-2">After FIRE</p>
-          <ul class="space-y-2 text-sm">
-            <li>• Gunakan 4% rule secara disiplin</li>
-            <li>• Jangan tarik pokok investasi</li>
-            <li>• Reinvest minimal 3%</li>
+          <p class="text-xs text-gray-400 mb-2">After FIRE</p>
+          <ul class="space-y-1 text-sm">
+            <li>• Gunakan 4% rule</li>
+            <li>• Jangan tarik pokok</li>
+            <li>• Reinvest 3%</li>
           </ul>
         </div>
 
