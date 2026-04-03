@@ -4,14 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FIRE Calculator Indonesia</title>
-    <meta
-      name="description"
-      content="Kalkulator FIRE untuk menghitung target financial independence dengan rule of 25 dan 4% rule."
-    />
 
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap"
       rel="stylesheet"
     />
 
@@ -26,22 +23,19 @@
     </style>
   </head>
 
-  <body class="bg-gray-100 min-h-screen p-6 text-gray-800">
-    <div class="max-w-5xl mx-auto">
-      <!-- HEADER -->
-      <div class="text-center mb-8">
-        <h1 class="text-3xl font-bold">FIRE Calculator</h1>
-        <p class="text-gray-500 text-sm mt-1">
-          Simple simulator untuk Financial Independence
-        </p>
-      </div>
+  <body
+    class="bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen p-6 text-gray-800"
+  >
+    <div class="max-w-7xl mx-auto">
+      <h1 class="text-4xl font-bold text-center mb-2">FIRE Calculator</h1>
+      <p class="text-center text-gray-500 mb-8">
+        Simple simulator untuk Financial Independence
+      </p>
 
-      <div class="grid md:grid-cols-3 gap-5">
-        <!-- LEFT -->
-        <div class="md:col-span-2 space-y-5">
-          <!-- INFO -->
-          <div class="bg-white p-5 rounded-xl border border-gray-200">
-            <p class="font-semibold mb-1">Apa ini?</p>
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="space-y-6">
+          <div class="bg-white p-5 rounded-2xl shadow-sm border">
+            <p class="font-semibold text-lg mb-1">Apa ini?</p>
             <p class="text-sm text-gray-600 leading-relaxed">
               Simulasi FIRE sederhana: asumsi return <b>7%</b> per tahun,
               <b>4%</b> dipakai untuk hidup, dan <b>3%</b> untuk menjaga nilai
@@ -49,101 +43,80 @@
             </p>
           </div>
 
-          <!-- INPUT -->
-          <div class="bg-white p-5 rounded-xl border border-gray-200">
-            <label class="text-sm text-gray-600">Pengeluaran Bulanan</label>
+          <div class="bg-white p-5 rounded-2xl shadow-sm border">
+            <label class="block text-sm font-medium text-gray-600"
+              >Pengeluaran Bulanan</label
+            >
             <input
               id="monthly"
               type="number"
               value="6000000"
-              class="w-full mt-2 p-3 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-300"
+              class="w-full mt-3 p-3 border rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-gray-300"
             />
           </div>
 
           <!-- STEP 1 -->
-          <div class="bg-white p-5 rounded-xl border border-gray-200">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-sm text-gray-700">Pengeluaran Tahunan</p>
-                <p class="text-xs text-gray-400">(Pengeluaran Bulanan × 12)</p>
-              </div>
-              <p class="text-lg font-semibold num">
-                Rp<span id="yearly"></span>
-              </p>
-            </div>
+          <div class="bg-white p-5 rounded-2xl shadow-sm border">
+            <p class="text-sm text-gray-700">Pengeluaran Tahunan</p>
+            <p class="text-xs text-gray-400">(Pengeluaran Bulanan × 12)</p>
+            <p class="text-lg font-semibold num mt-2 text-left">
+              Rp<span id="yearly"></span>
+            </p>
           </div>
 
           <!-- STEP 2 -->
-          <div class="bg-white p-5 rounded-xl border border-gray-200">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-sm text-gray-700">Target FIRE</p>
-                <p class="text-xs text-gray-400">(Pengeluaran Tahunan × 25)</p>
-              </div>
-              <p class="text-lg font-semibold num">
-                Rp<span id="target"></span>
-              </p>
-            </div>
+          <div class="bg-white p-5 rounded-2xl shadow-sm border">
+            <p class="text-sm text-gray-700">Target FIRE</p>
+            <p class="text-xs text-gray-400">(Pengeluaran Tahunan × 25)</p>
+            <p class="text-lg font-semibold num mt-2 text-left">
+              Rp<span id="target"></span>
+            </p>
           </div>
 
           <!-- STEP 3 -->
-          <div class="bg-white p-5 rounded-xl border border-gray-200">
-            <p class="font-semibold mb-4">
+          <div class="bg-white p-5 rounded-2xl shadow-sm border">
+            <p class="font-semibold text-base mb-4">
               Step 3: Simulasi saat sudah mencapai FIRE
             </p>
 
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div>
-                  <p class="text-sm text-gray-700">Total Aset</p>
-                  <p class="text-xs text-gray-400">
-                    (Total dana yang sudah terkumpul)
-                  </p>
-                </div>
-                <p class="font-semibold num text-lg">
+            <div class="space-y-4 text-sm">
+              <div>
+                <p class="text-gray-700">Total Aset</p>
+                <p class="text-xs text-gray-400">
+                  (Total dana yang sudah terkumpul)
+                </p>
+                <p class="font-semibold num text-left text-lg">
                   Rp<span id="target2"></span>
                 </p>
               </div>
 
-              <div class="flex justify-between items-start">
-                <div>
-                  <p class="text-sm text-gray-700">Return per tahun</p>
-                  <p class="text-xs text-gray-400">
-                    (Asumsi 7% dari total aset)
-                  </p>
-                </div>
-                <p class="font-semibold num text-lg">
+              <div>
+                <p class="text-gray-700">Return per tahun</p>
+                <p class="text-xs text-gray-400">(Asumsi 7% dari total aset)</p>
+                <p class="font-semibold num text-left text-lg">
                   Rp<span id="return"></span>
                 </p>
               </div>
 
-              <div class="flex justify-between items-start">
-                <div>
-                  <p class="text-sm text-gray-700">
-                    Yang digunakan untuk hidup
-                  </p>
-                  <p class="text-xs text-gray-400">
-                    (4% per tahun untuk biaya hidup)
-                  </p>
-                  <p class="text-xs text-gray-400 mt-1">
-                    ≈ Rp<span id="withdrawMonth" class="num"></span>/bulan
-                  </p>
-                </div>
-                <p class="font-semibold num text-lg">
+              <div>
+                <p class="text-gray-700">Yang digunakan untuk hidup</p>
+                <p class="text-xs text-gray-400">
+                  (4% per tahun untuk biaya hidup)
+                </p>
+                <p class="font-semibold num text-left text-lg">
                   Rp<span id="withdrawYear"></span>
+                </p>
+                <p class="text-xs text-gray-400 text-left">
+                  ≈ Rp<span id="withdrawMonth" class="num"></span>/bulan
                 </p>
               </div>
 
-              <div class="flex justify-between items-start">
-                <div>
-                  <p class="text-sm text-gray-700">
-                    Yang diinvestasikan kembali
-                  </p>
-                  <p class="text-xs text-gray-400">
-                    (Sisa 3% untuk menjaga nilai aset)
-                  </p>
-                </div>
-                <p class="font-semibold num text-lg">
+              <div>
+                <p class="text-gray-700">Yang diinvestasikan kembali</p>
+                <p class="text-xs text-gray-400">
+                  (Sisa 3% untuk menjaga nilai aset)
+                </p>
+                <p class="font-semibold num text-left text-lg">
                   Rp<span id="growth"></span>
                 </p>
               </div>
@@ -151,59 +124,49 @@
           </div>
 
           <!-- NEXT -->
-          <div class="bg-white p-5 rounded-xl border border-gray-200">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-sm text-gray-700">Proyeksi Aset Tahun Depan</p>
-                <p class="text-xs text-gray-400">(Setelah reinvest 3%)</p>
-              </div>
-              <p class="text-lg font-semibold num">Rp<span id="next"></span></p>
-            </div>
+          <div class="bg-white p-5 rounded-2xl shadow-sm border">
+            <p class="text-gray-700">Proyeksi Aset Tahun Depan</p>
+            <p class="text-xs text-gray-400">(Setelah reinvest 3%)</p>
+            <p class="text-lg font-semibold num text-left mt-2">
+              Rp<span id="next"></span>
+            </p>
           </div>
         </div>
 
-        <!-- RIGHT -->
-        <div class="space-y-5">
-          <!-- DETAILED SUMMARY -->
-          <div
-            class="bg-white p-5 rounded-xl border border-gray-200 sticky top-6 space-y-3"
-          >
-            <p class="font-semibold text-lg">Rangkuman Detail</p>
-            <p
-              class="text-sm text-gray-600 leading-relaxed"
-              id="detailedSummary"
-            >
-              <!-- Isi akan diupdate JS -->
-            </p>
+        
+        <div
+          class="bg-white p-5 rounded-2xl shadow-sm border space-y-6 sticky top-6"
+        >
+          <p class="font-semibold text-lg">Action Plan</p>
+
+          <div>
+            <p class="font-semibold text-sm text-gray-500 mb-2">Before FIRE</p>
+            <ul class="space-y-2 text-sm">
+              <li>• Naikkan income</li>
+              <li>• Tekan pengeluaran</li>
+              <li>• Investasi rutin</li>
+            </ul>
           </div>
 
-          <!-- ACTION PLAN -->
-          <div
-            class="bg-white p-5 rounded-xl border border-gray-200 sticky top-[350px] space-y-5"
-          >
-            <p class="font-semibold">Action Plan</p>
-
-            <div>
-              <p class="text-xs text-gray-400 mb-2">Before FIRE</p>
-              <ul class="space-y-1 text-sm">
-                <li>• Naikkan income</li>
-                <li>• Tekan pengeluaran</li>
-                <li>• Investasi rutin</li>
-              </ul>
-            </div>
-
-            <div>
-              <p class="text-xs text-gray-400 mb-2">After FIRE</p>
-              <ul class="space-y-1 text-sm">
-                <li>• Gunakan 4% rule</li>
-                <li>• Jangan tarik pokok</li>
-                <li>• Reinvest 3%</li>
-              </ul>
-            </div>
+          <div>
+            <p class="font-semibold text-sm text-gray-500 mb-2">After FIRE</p>
+            <ul class="space-y-2 text-sm">
+              <li>• Gunakan 4% rule</li>
+              <li>• Jangan tarik pokok</li>
+              <li>• Reinvest 3%</li>
+            </ul>
           </div>
+          <hr />
+
+          <p class="font-semibold text-lg mb-3">Ringkasan</p>
+          <p
+            id="detailedSummary"
+            class="text-sm text-gray-700 leading-relaxed"
+          ></p>
         </div>
       </div>
     </div>
+
     <script>
       (function () {
         const input = document.getElementById("monthly");
@@ -224,7 +187,7 @@
           num = Number(num);
 
           function clean(val) {
-            return parseFloat(val).toString(); // auto buang .0
+            return parseFloat(val).toString();
           }
 
           if (num >= 1000000000)
@@ -244,7 +207,6 @@
           const g = t * 0.03;
           const n = t + g;
 
-          // kiri (tetap simple)
           document.getElementById("yearly").textContent = formatShort(y);
           document.getElementById("target").textContent = formatShort(t);
           document.getElementById("target2").textContent = formatShort(t);
@@ -255,28 +217,26 @@
           document.getElementById("growth").textContent = formatShort(g);
           document.getElementById("next").textContent = formatShort(n);
 
-          // kanan (detail)
           summaryEl.innerHTML = `
-            Dengan pengeluaran bulanan sebesar <span class="num font-semibold">${formatFull(m)}</span>, 
-            kamu membutuhkan sekitar <span class="num font-semibold">${formatFull(y)}</span> per tahun untuk mempertahankan gaya hidupmu saat ini. 
-            Berdasarkan pendekatan FIRE (rule of 25), berarti kamu perlu mengumpulkan aset sekitar 
-            <span class="num font-semibold">${formatFull(t)}</span> agar bisa hidup dari hasil investasi tanpa harus bekerja aktif lagi.
+      Dengan pengeluaran bulanan sebesar <span class="num font-semibold">${formatFull(m)}</span>, 
+      kamu membutuhkan sekitar <span class="num font-semibold">${formatFull(y)}</span> per tahun untuk mempertahankan gaya hidupmu. 
+      Agar bisa mencapai kondisi FIRE, kamu perlu mengumpulkan aset sekitar 
+      <span class="num font-semibold">${formatFull(t)}</span>.
 
-            <br><br>
+      <br><br>
 
-            Ketika jumlah tersebut tercapai, asetmu akan menghasilkan return sekitar 
-            <span class="num font-semibold">${formatFull(r)}</span> per tahun. 
-            Dari return ini, sebagian digunakan untuk membiayai hidupmu, yaitu sekitar 
-            <span class="num font-semibold">${formatFull(w)}</span> per tahun atau setara 
-            <span class="num font-semibold">${formatFull(wm)}</span> per bulan—angka ini secara langsung merepresentasikan kebutuhan hidupmu saat ini.
+      Ketika target tersebut tercapai, asetmu akan menghasilkan sekitar 
+      <span class="num font-semibold">${formatFull(r)}</span> per tahun. 
+      Dari jumlah ini, kamu bisa menggunakan 
+      <span class="num font-semibold">${formatFull(w)}</span> per tahun atau sekitar 
+      <span class="num font-semibold">${formatFull(wm)}</span> per bulan untuk hidup.
 
-            <br><br>
+      <br><br>
 
-            Sementara itu, sisa return sebesar <span class="num font-semibold">${formatFull(g)}</span> tidak digunakan, 
-            melainkan diinvestasikan kembali untuk menjaga daya beli aset terhadap inflasi sekaligus memberikan pertumbuhan tambahan. 
-            Dengan mekanisme ini, total asetmu akan terus meningkat secara perlahan menjadi sekitar 
-            <span class="num font-semibold">${formatFull(n)}</span> di tahun berikutnya, tanpa mengurangi pokok investasi.
-          `;
+      Sisa sebesar <span class="num font-semibold">${formatFull(g)}</span> akan diinvestasikan kembali, 
+      sehingga total asetmu terus tumbuh menjadi sekitar 
+      <span class="num font-semibold">${formatFull(n)}</span> di tahun berikutnya.
+    `;
         }
 
         input.addEventListener("input", calc);
