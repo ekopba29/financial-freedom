@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIRE Calculator Indonesia</title>
+  <meta name="description" content="Kalkulator FIRE untuk menghitung target financial independence dengan rule of 25 dan 4% rule." />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+
+<div class="max-w-5xl mx-auto">
+  <h1 class="text-3xl font-bold text-center mb-6">FIRE Calculator</h1>
+
+  <div class="grid md:grid-cols-3 gap-6">
+
+    <!-- LEFT CONTENT -->
+    <div class="md:col-span-2 space-y-6">
+
+      <div class="bg-white p-4 rounded-2xl shadow">
+        <p class="font-semibold">Apa ini?</p>
+        <p class="text-sm text-gray-600">
+          Simulasi FIRE sederhana:
+          return 7% per tahun, 4% dipakai hidup, 3% untuk jaga aset.
+        </p>
+      </div>
+
+      <div class="bg-white p-4 rounded-2xl shadow">
+        <label class="block text-sm font-medium">Pengeluaran Bulanan (Rp)</label>
+        <input id="monthly" type="number" value="6000000" class="w-full mt-2 p-2 border rounded-lg" />
+      </div>
+
+      <div class="bg-white p-4 rounded-2xl shadow">
+        <p class="font-semibold">Step 1</p>
+        <p>Pengeluaran Tahunan: Rp<span id="yearly"></span></p>
+      </div>
+
+      <div class="bg-white p-4 rounded-2xl shadow">
+        <p class="font-semibold">Step 2</p>
+        <p>Target FIRE: Rp<span id="target"></span></p>
+      </div>
+
+      <div class="bg-white p-4 rounded-2xl shadow space-y-2">
+        <p class="font-semibold">Step 3 (Simulasi FIRE)</p>
+        <p>Total aset: Rp<span id="target2"></span></p>
+        <p>Return 7%: Rp<span id="return"></span></p>
+        <p>Ambil 4%: Rp<span id="withdrawYear"></span> / tahun</p>
+        <p>Per bulan: Rp<span id="withdrawMonth"></span></p>
+        <p>Sisa 3%: Rp<span id="growth"></span></p>
+      </div>
+
+      <div class="bg-white p-4 rounded-2xl shadow">
+        <p class="font-semibold">Aset tahun depan</p>
+        <p>Rp<span id="next"></span></p>
+      </div>
+
+    </div>
+
+    <!-- RIGHT ACTION -->
+    <div>
+      <div class="bg-white p-4 rounded-2xl shadow space-y-4 sticky top-4">
+        <p class="font-semibold">Action</p>
+
+        <div>
+          <p class="font-semibold text-sm">Before FIRE</p>
+          <ul class="list-disc pl-5 text-sm">
+            <li>Naikkan income</li>
+            <li>Tekan pengeluaran</li>
+            <li>Investasi rutin</li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="font-semibold text-sm">After FIRE</p>
+          <ul class="list-disc pl-5 text-sm">
+            <li>Pakai 4% rule</li>
+            <li>Jangan tarik pokok</li>
+            <li>Reinvest 3%</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  const input = document.getElementById('monthly');
+
+  function format(num) {
+    return Number(num).toLocaleString('id-ID');
+  }
+
+  function calc() {
+    const m = Number(input.value) || 0;
+    const y = m * 12;
+    const t = y * 25;
+    const r = t * 0.07;
+    const w = t * 0.04;
+    const wm = w / 12;
+    const g = t * 0.03;
+    const n = t + g;
+
+    document.getElementById('yearly').textContent = format(y);
+    document.getElementById('target').textContent = format(t);
+    document.getElementById('target2').textContent = format(t);
+    document.getElementById('return').textContent = format(r);
+    document.getElementById('withdrawYear').textContent = format(w);
+    document.getElementById('withdrawMonth').textContent = format(wm);
+    document.getElementById('growth').textContent = format(g);
+    document.getElementById('next').textContent = format(n);
+  }
+
+  input.addEventListener('input', calc);
+  calc();
+})();
+</script>
+
+</body>
+</html>
